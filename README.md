@@ -20,7 +20,7 @@ The goal is to ensure:
 - ✅ Error handling and assertions
 - ✅ Precondition checks (e.g., cookie banner, login heading)
 - ✅ Docker integration for isolated execution
-- ✅ Qase.io integration-ready
+- ✅ Qase.io integration via `playwright-qase-reporter`
 
 ## 🗂️ Project Structure
 
@@ -84,11 +84,41 @@ docker compose up
 
 ## 🧩 Qase.io Integration (Optional)
 
-1. Go to [Qase.io](https://app.qase.io/)
-2. Create a project and test suite (e.g., `Storabble Login`)
-3. Map test case IDs (e.g., STL-03) to Qase test cases
-4. Use [Playwright Reporter for Qase](https://github.com/qase-tms/qase-javascript) or manually report results
-5. (Optional) Add Qase API token and run tests with reporter config
+This project is integrated with Qase.io via [playwright-qase-reporter](https://github.com/qase-tms/qase-javascript/tree/master/qase-playwright).
+
+🔑 API Setup
+
+1. Go to your Qase Project → Settings → API → Generate API Token
+2. Set environment variable (optional):
+
+```bash
+export QASE_API_TOKEN=<your_token>
+export QASE_PROJECT_CODE=STL
+```
+
+Or pass via command line when running tests:
+
+```bash
+QASE_API_TOKEN=<your_token> QASE_PROJECT_CODE=STL QASE_MODE=testops npx playwright test
+```
+
+🧩 Map Test Cases
+
+Each test case uses qase.id() mapping:
+
+```js
+import { qase } from "playwright-qase-reporter";
+
+test("STL-03: Submit empty login form", async () => {
+  qase.id(3);
+  ...
+});
+```
+
+📈 View Results
+
+After running tests, view detailed reports:
+https://app.qase.io/run/STL
 
 ## 🧑‍💻 Run Tests Locally (Without Docker)
 
