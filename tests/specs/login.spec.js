@@ -3,6 +3,7 @@ import { test } from "../fixtures/baseFixture";
 import { expect } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage";
 import { invalidLoginData, passwordResetData } from "../fixtures/loginData";
+import { qase } from "playwright-qase-reporter";
 
 test.describe("Storabble Login - Automated Tests", () => {
   let loginPage;
@@ -19,6 +20,8 @@ test.describe("Storabble Login - Automated Tests", () => {
 
   // Test Case: Submitting login form without filling email and password
   test("STL-03: Submit login form without entering email and password", async () => {
+    qase.id(3);
+    // Using the invalid login data for empty fields
     const { email, password, expectedErrors } = invalidLoginData.emptyFields;
     await loginPage.login(email, password);
     const errors = await loginPage.getErrorMessages();
@@ -27,6 +30,8 @@ test.describe("Storabble Login - Automated Tests", () => {
 
   // Test Case: Submitting login form with invalid email format
   test("STL-04: Login with invalid email format", async () => {
+    qase.id(4);
+    // Using the invalid email format data
     const { email, password, expectedError } =
       invalidLoginData.invalidEmailFormat;
     await loginPage.login(email, password);
@@ -36,6 +41,8 @@ test.describe("Storabble Login - Automated Tests", () => {
 
   // Test Case: Attempting login with an unregistered email
   test("STL-05: Login with unregistered email", async () => {
+    qase.id(5);
+    // Using the invalid login data for unregistered email
     const { email, password, expectedError } = invalidLoginData.unregistered;
     await loginPage.login(email, password);
     const errors = await loginPage.getErrorMessages();
@@ -46,6 +53,8 @@ test.describe("Storabble Login - Automated Tests", () => {
 
   // Test Case: Only email field filled
   test("STL-08: Login attempt with only email field filled", async () => {
+    qase.id(8);
+    // Using the invalid login data for only email filled
     const { email, password, expectedError } = invalidLoginData.onlyEmail;
     await loginPage.login(email, password);
     const errors = await loginPage.getErrorMessages();
@@ -54,6 +63,8 @@ test.describe("Storabble Login - Automated Tests", () => {
 
   // Test Case: Only password field filled
   test("STL-09: Login attempt with only password field filled", async () => {
+    qase.id(9);
+    // Using the same data structure for consistency
     const { email, password, expectedError } = invalidLoginData.onlyPassword;
     await loginPage.login(email, password);
     const errors = await loginPage.getErrorMessages();
@@ -64,6 +75,8 @@ test.describe("Storabble Login - Automated Tests", () => {
   test("STL-10: Forgot password link opens password reset flow", async ({
     page,
   }) => {
+    qase.id(10);
+    // Navigate to the forgot password page
     await loginPage.clickForgotPassword();
     await expect(page).toHaveURL(passwordResetData.expectedUrlPattern); // Use centralized pattern
   });

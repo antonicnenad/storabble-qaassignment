@@ -1,5 +1,7 @@
 // playwright.config.js
 import { defineConfig } from "@playwright/test";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default defineConfig({
   testDir: "./tests/specs",
@@ -12,11 +14,28 @@ export default defineConfig({
     ignoreHTTPSErrors: true,
     video: "retain-on-failure",
     trace: "on-first-retry",
-
-    // ✅ HTTP Auth credentials (set at browser context level)
     httpCredentials: {
       username: "storabble",
       password: "ed2023",
     },
   },
+  reporter: [
+    ["list"],
+    [
+      "playwright-qase-reporter",
+      {
+        mode: "testops",
+        debug: false,
+        testops: {
+          api: {
+            token: process.env.QASE_API_TOKEN,
+          },
+          project: "STL", // ovo je kod projekta u Qase
+          run: {
+            complete: true,
+          },
+        },
+      },
+    ],
+  ],
 });

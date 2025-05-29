@@ -10,6 +10,7 @@
   "author": "Nenad Antonic",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.52.0"
+    "@playwright/test": "^1.52.0",
+    "playwright-qase-reporter": "^2.1.2"
   }
 }
