@@ -1,5 +1,10 @@
-// Test data for invalid login scenarios used in Storabble login tests
-export const invalidLoginData = {
+// Test data for login scenarios used in Storabble login tests
+export const loginData = {
+  registered: {
+    email: "nenadqatester+storabble@gmail.com",
+    password: "Storabble1",
+    expectedPage: "My storage listings",
+  },
   emptyFields: {
     email: "",
     password: "",
@@ -29,4 +34,7 @@ export const invalidLoginData = {
 };
 export const passwordResetData = {
   expectedUrlPattern: /.*\/en\/reset-password/, // Regex pattern for URL validation
+};
+export const homePageData = {
+  expectedUrlPattern: /.*\/en\/listings(\?.*)?$/, // Regex pattern for URL validation
 };

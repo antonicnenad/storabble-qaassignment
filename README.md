@@ -14,7 +14,7 @@ The goal is to ensure:
 
 ## ✅ What Has Been Implemented
 
-- ✅ 6 Manual test cases automated using Playwright
+- ✅ 7 Manual test cases automated using Playwright
 - ✅ Page Object Model (POM) structure
 - ✅ Centralized test data (`loginData.js`)
 - ✅ Error handling and assertions
@@ -75,6 +75,7 @@ docker compose up
 
 | Test Case ID | Description                                           |
 | ------------ | ----------------------------------------------------- |
+| STL-01       | Login with valid credentials                          |
 | STL-03       | Submit empty login form                               |
 | STL-04       | Login with invalid email format                       |
 | STL-05       | Login with unregistered email                         |

@@ -25,6 +25,11 @@ export class LoginPage {
     await expect(this.page.locator("h3")).toHaveText("Log into your account");
   }
 
+  // Validate that we are on the home page
+  async assertHomePageVisible() {
+    await expect(this.page.locator("h1")).toHaveText("My storage listings");
+  }
+
   // Accept cookie popup if it's visible
   async acceptCookiesIfVisible() {
     const cookieButton = this.page.getByRole("button", {
