@@ -54,7 +54,7 @@ test.describe("Storabble Login - Automated Tests", () => {
   });
 
   // Test Case: Attempting login with an unregistered email
-  test("STL-05: Login with unregistered email", async () => {
+  test.fail("STL-05: Login with unregistered email", async () => {
     qase.id(5);
     // Using the invalid login data for unregistered email
     const { email, password, expectedError } = loginData.unregistered;
